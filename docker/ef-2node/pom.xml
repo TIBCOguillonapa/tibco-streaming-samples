@@ -59,7 +59,7 @@
     </licenses>
 
     <properties>
-        <studio.sample>true</studio.sample>
+        <studiosample>true</studiosample>
     </properties>
 
     <!-- Aggregator pom -->
