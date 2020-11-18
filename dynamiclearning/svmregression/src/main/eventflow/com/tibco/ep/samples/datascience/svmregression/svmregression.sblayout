@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-444"/>
+        <param name="gui:y" value="-144"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-299"/>
+        <param name="gui:y" value="-288"/>
+        <param name="gui:bends:1" value="-330,-114;-324,-257"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-299"/>
+        <param name="gui:y" value="-144"/>
+    </component>
+    <component name="SVR">
+        <param name="gui:x" value="-121"/>
+        <param name="gui:y" value="-143"/>
+        <param name="gui:bends:1" value="-215,-259;-199,-126"/>
+        <param name="gui:bends:2" value="-213,-114;-214,-100"/>
+    </component>
+    <component name="Error">
+        <param name="gui:x" value="56"/>
+        <param name="gui:y" value="-29"/>
+        <param name="gui:bends:1" value="7,-98;27,-2"/>
+    </component>
+    <component name="ModelSummary">
+        <param name="gui:x" value="56"/>
+        <param name="gui:y" value="-311"/>
+        <param name="gui:bends:1" value="-21,-124;24,-279"/>
+    </component>
+    <component name="ScoringPredictions">
+        <param name="gui:x" value="56"/>
+        <param name="gui:y" value="-113"/>
+        <param name="gui:bends:1" value="11,-108;32,-83"/>
+    </component>
+    <component name="TrainTestPredictions">
+        <param name="gui:x" value="56"/>
+        <param name="gui:y" value="-215"/>
+        <param name="gui:bends:1" value="38,-116"/>
+    </component>
+</application-layout>

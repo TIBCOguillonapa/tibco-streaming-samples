@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_0cbb745d24fee91a01a4175837451bd7e4edd5b4">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.classificationtrees.classificationtrees"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="SEPALLEN" type="double"/>
+                <field name="SEPALWID" type="double"/>
+                <field name="PETALLEN" type="double"/>
+                <field name="PETALWID" type="double"/>
+                <field name="IRISTYPE" type="int"/>
+            </schema>
+        </stream>
+        <box name="MatrixTrainTest" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:MatrixTrainTest_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;SEPALLEN&quot;,&quot;expression&quot;:&quot;SEPALLEN&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;SEPALWID&quot;,&quot;expression&quot;:&quot;SEPALWID&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PETALLEN&quot;,&quot;expression&quot;:&quot;PETALLEN&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PETALWID&quot;,&quot;expression&quot;:&quot;PETALWID&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;IRISTYPE&quot;,&quot;expression&quot;:&quot;IRISTYPE&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:150,&quot;maxNumberOfRows&quot;:150,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="score" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:score_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="Data">list(tuple(SEPALLEN,SEPALWID,PETALLEN,PETALWID,IRISTYPE))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="ClassificationTrees" type="java">
+            <input port="1" stream="out:score_1"/>
+            <input port="2" stream="out:MatrixTrainTest_1"/>
+            <output port="1" stream="ModelSummary"/>
+            <output port="2" stream="TrainTestPredictions"/>
+            <output port="3" stream="ScoringPredictions"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.classification.classificationtrees.ClassificationTrees"/>
+            <param name="KTestRows" value="10"/>
+            <param name="UnmatchedCategories" value="Stop scoring and display error"/>
+            <param name="fitPredictors" value="SEPALLEN,SEPALWID,PETALLEN,PETALWID"/>
+            <param name="fitResponse" value="IRISTYPE"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="maxDepth" value="20"/>
+            <param name="maxNodes" value="1000"/>
+            <param name="nodeSize" value="5"/>
+            <param name="pruneTree" value="false"/>
+            <param name="splitRule" value="GINI"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="ModelSummary"/>
+        <output-stream name="ScoringPredictions"/>
+        <output-stream name="TrainTestPredictions"/>
+    </add>
+</modify>

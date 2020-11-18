@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-556"/>
+        <param name="gui:y" value="-111"/>
+    </component>
+    <component name="Correlations">
+        <param name="gui:x" value="-242"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-411"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="Error">
+        <param name="gui:x" value="-17"/>
+        <param name="gui:y" value="-30"/>
+        <param name="gui:bends:1" value="-72,-70;-47,-1"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="-17"/>
+        <param name="gui:y" value="-121"/>
+    </component>
+</application-layout>

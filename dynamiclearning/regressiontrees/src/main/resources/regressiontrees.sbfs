@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="InputStream">
+    <ProcessingOptions DataGenerationMethod="DataFile" TimeSynchronized="true">
+      <DataSource Name="DataSource" DataSourceURI="BostonHousing2.csv" QuoteChar="34"/>
+    </ProcessingOptions>
+    <Schema ColumnMappingMethod="NAME">
+      <Fields Name="CrimeRate" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="CrimeRate"/>
+      </Fields>
+      <Fields Name="ResidentialLandZone" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="ResidentialLandZone"/>
+      </Fields>
+      <Fields Name="NonRetailBusinessacres" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="NonRetailBusinessacres"/>
+      </Fields>
+      <Fields Name="CharlesRiver" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="CharlesRiver"/>
+      </Fields>
+      <Fields Name="NitricOxide" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="NitricOxide"/>
+      </Fields>
+      <Fields Name="AverageRooms" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="AverageRooms"/>
+      </Fields>
+      <Fields Name="OwnerOccupiedUnits" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="OwnerOccupiedUnits"/>
+      </Fields>
+      <Fields Name="DistancetoEmploymentCenters" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="DistancetoEmploymentCenters"/>
+      </Fields>
+      <Fields Name="AccessibilitytoHighways" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="AccessibilitytoHighways"/>
+      </Fields>
+      <Fields Name="PropertyTaxRate" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="PropertyTaxRate"/>
+      </Fields>
+      <Fields Name="PupilTeacherRatio" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="PupilTeacherRatio"/>
+      </Fields>
+      <Fields Name="PercentOfLowerStatus" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="PercentOfLowerStatus"/>
+      </Fields>
+      <Fields Name="ValueofOccupiedHomes" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="ValueofOccupiedHomes"/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_0cbb745d24fee91a01a4175837451bd7e4edd5b4">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.ttest.ttest"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="X1" type="double"/>
+                <field name="X2" type="double"/>
+                <field name="Y1" type="double"/>
+                <field name="Y2" type="double"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;X1&quot;,&quot;expression&quot;:&quot;X1&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;Y1&quot;,&quot;expression&quot;:&quot;Y1&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;X2&quot;,&quot;expression&quot;:&quot;X2&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;Y2&quot;,&quot;expression&quot;:&quot;Y2&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:100,&quot;maxNumberOfRows&quot;:100,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="TTest" type="java">
+            <input port="1" stream="out:Matrix_1"/>
+            <output port="1" stream="OutputStream"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.ttest.TTest"/>
+            <param name="List1" value="X1,X2"/>
+            <param name="List2" value="Y1,Y2"/>
+            <param name="MissingData" value="Pairwise"/>
+            <param name="equalVariance" value="true"/>
+            <param name="logLevel" value="INFO"/>
+        </box>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

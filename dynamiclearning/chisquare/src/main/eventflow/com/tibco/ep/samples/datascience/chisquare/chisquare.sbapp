@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_0cbb745d24fee91a01a4175837451bd7e4edd5b4">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.chisquare.chisquare"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="X" type="int"/>
+                <field name="Y" type="int"/>
+                <field name="Z" type="int"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;X&quot;,&quot;expression&quot;:&quot;X&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;Y&quot;,&quot;expression&quot;:&quot;Y&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;Z&quot;,&quot;expression&quot;:&quot;Z&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:100,&quot;maxNumberOfRows&quot;:100,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="ChiSq" type="java">
+            <input port="1" stream="out:Matrix_1"/>
+            <output port="1" stream="OutputStream"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.chisqtestindp.ChiSquaredTestofIndependence"/>
+            <param name="MissingData" value="Casewise"/>
+            <param name="frequencyChoice" value="false"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="percentageChoice" value="false"/>
+            <param name="varList1" value="X"/>
+            <param name="varList2" value="Y,Z"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

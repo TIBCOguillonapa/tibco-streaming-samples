@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_80f410b5336b693f16633cecb1ced6f456aee764">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.anova.anova"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="SEPALLEN" type="double"/>
+                <field name="PETALWID" type="double"/>
+                <field name="IRISTYPE" type="string"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;SEPALLEN&quot;,&quot;expression&quot;:&quot;SEPALLEN&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PETALWID&quot;,&quot;expression&quot;:&quot;PETALWID&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;IRISTYPE&quot;,&quot;expression&quot;:&quot;IRISTYPE&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:150,&quot;maxNumberOfRows&quot;:150,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="ANOVA" type="java">
+            <input port="1" stream="out:Matrix_1"/>
+            <output port="1" stream="OutputStream"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.anova.anova"/>
+            <param name="GroupField" value="IRISTYPE"/>
+            <param name="MissingData" value="Pairwise"/>
+            <param name="ResponseField" value="SEPALLEN,PETALWID"/>
+            <param name="logLevel" value="INFO"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

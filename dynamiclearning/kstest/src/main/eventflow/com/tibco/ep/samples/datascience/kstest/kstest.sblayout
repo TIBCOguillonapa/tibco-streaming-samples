@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-346"/>
+        <param name="gui:y" value="-119"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-215"/>
+        <param name="gui:y" value="-119"/>
+    </component>
+    <component name="TwoSampleKSTest">
+        <param name="gui:x" value="-97"/>
+        <param name="gui:y" value="-119"/>
+    </component>
+    <component name="Error">
+        <param name="gui:x" value="55"/>
+        <param name="gui:y" value="-40"/>
+        <param name="gui:bends:1" value="17,-77;40,-8"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="126"/>
+        <param name="gui:y" value="-129"/>
+    </component>
+</application-layout>

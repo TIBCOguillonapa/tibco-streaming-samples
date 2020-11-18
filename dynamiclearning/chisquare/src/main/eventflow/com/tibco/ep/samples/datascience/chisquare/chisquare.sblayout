@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-559"/>
+        <param name="gui:y" value="-269"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-414"/>
+        <param name="gui:y" value="-269"/>
+    </component>
+    <component name="ChiSq">
+        <param name="gui:x" value="-279"/>
+        <param name="gui:y" value="-268"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="-137"/>
+        <param name="gui:y" value="-313"/>
+        <param name="gui:bends:1" value="-183,-282"/>
+    </component>
+    <component name="Error">
+        <param name="gui:x" value="-137"/>
+        <param name="gui:y" value="-220"/>
+        <param name="gui:bends:1" value="-183,-190"/>
+    </component>
+</application-layout>

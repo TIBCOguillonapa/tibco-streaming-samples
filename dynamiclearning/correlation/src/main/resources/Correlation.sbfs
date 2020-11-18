@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="InputStream">
+    <ProcessingOptions DataGenerationMethod="DataFile" TimeSynchronized="true">
+      <DataSource Name="DataSource" DataSourceURI="CorrSample.csv" QuoteChar="34"/>
+    </ProcessingOptions>
+    <Schema ColumnMappingMethod="NAME">
+      <Fields Name="X1" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="X1"/>
+      </Fields>
+      <Fields Name="X2" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="X2"/>
+      </Fields>
+      <Fields Name="X3" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="X3"/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

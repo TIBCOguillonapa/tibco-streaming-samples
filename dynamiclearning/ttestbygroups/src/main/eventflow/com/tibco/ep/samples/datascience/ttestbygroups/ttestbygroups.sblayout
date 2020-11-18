@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-462"/>
+        <param name="gui:y" value="-164"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-316"/>
+        <param name="gui:y" value="-164"/>
+    </component>
+    <component name="TTestByGroups">
+        <param name="gui:x" value="-161"/>
+        <param name="gui:y" value="-164"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="-22"/>
+        <param name="gui:y" value="-164"/>
+    </component>
+</application-layout>

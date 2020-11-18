@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-893"/>
+        <param name="gui:y" value="-433"/>
+    </component>
+    <component name="ANOVA">
+        <param name="gui:x" value="-629"/>
+        <param name="gui:y" value="-433"/>
+    </component>
+    <component name="Matrix">
+        <param name="gui:x" value="-768"/>
+        <param name="gui:y" value="-433"/>
+    </component>
+    <component name="Error">
+        <param name="gui:x" value="-488"/>
+        <param name="gui:y" value="-397"/>
+        <param name="gui:bends:1" value="-526,-392;-506,-369"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="-488"/>
+        <param name="gui:y" value="-480"/>
+        <param name="gui:bends:1" value="-526,-413;-507,-448"/>
+    </component>
+</application-layout>

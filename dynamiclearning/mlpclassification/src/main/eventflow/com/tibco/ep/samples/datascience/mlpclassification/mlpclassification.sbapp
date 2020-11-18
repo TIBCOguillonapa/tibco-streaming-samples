@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_a4d321682a83d591db2062fcef7e240902f5f70b">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.mlpclassification.mlpclassification"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="SEPALLEN" type="double"/>
+                <field name="SEPALWID" type="double"/>
+                <field name="PETALLEN" type="double"/>
+                <field name="PETALWID" type="double"/>
+                <field name="IRISTYPE" type="int"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;SEPALLEN&quot;,&quot;expression&quot;:&quot;SEPALLEN&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;SEPALWID&quot;,&quot;expression&quot;:&quot;SEPALWID&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PETALLEN&quot;,&quot;expression&quot;:&quot;PETALLEN&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PETALWID&quot;,&quot;expression&quot;:&quot;PETALWID&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;IRISTYPE&quot;,&quot;expression&quot;:&quot;IRISTYPE&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:150,&quot;maxNumberOfRows&quot;:150,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="Score" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Score_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="Data">list(tuple(SEPALLEN,SEPALWID,PETALLEN,PETALWID,IRISTYPE))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MLP" type="java">
+            <input port="1" stream="out:Score_1"/>
+            <input port="2" stream="out:Matrix_1"/>
+            <output port="1" stream="ModelSummary"/>
+            <output port="2" stream="TrainTestPredictions"/>
+            <output port="3" stream="ScoringPredictions"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.classification.mlp.MLP"/>
+            <param name="KTestRows" value="20"/>
+            <param name="UnmatchedCategories" value="Stop scoring and display error"/>
+            <param name="batchMode" value="false"/>
+            <param name="factorCodingMethod" value="One-hot"/>
+            <param name="fitPredictors" value="SEPALLEN,SEPALWID,PETALLEN,PETALWID"/>
+            <param name="fitResponse" value="IRISTYPE"/>
+            <param name="hiddenActivationFunction" value="SIGMOID"/>
+            <param name="learningRate" value="0.1"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="momentum" value="0.0"/>
+            <param name="nEpochs" value="200"/>
+            <param name="numberOfHiddenNeurons" value="10"/>
+            <param name="updateMLP" value="false"/>
+            <param name="weightDecay" value="0.0"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="ModelSummary"/>
+        <output-stream name="ScoringPredictions"/>
+        <output-stream name="TrainTestPredictions"/>
+    </add>
+</modify>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="InputStream">
+    <ProcessingOptions DataGenerationMethod="DataFile" TimeSynchronized="true">
+      <DataSource Name="DataSource" DataSourceURI="Crabs.csv" QuoteChar="34"/>
+    </ProcessingOptions>
+    <Schema ColumnMappingMethod="NAME">
+      <Fields Name="WEIGHT" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="WEIGHT"/>
+      </Fields>
+      <Fields Name="CATWIDTH" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="CATWIDTH"/>
+      </Fields>
+      <Fields Name="Y" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldName="Y"/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+  <SimStreams Name="OptionsScoring">
+    <ProcessingOptions DataGenerationMethod="Custom"/>
+    <Schema>
+      <Fields Name="OptionsScoring" DataTypeName="tuple" Description="">
+        <Distribution/>
+        <Schema>
+          <Fields Name="CodeSelect" DataTypeName="list" Description="">
+            <Distribution GenerationMethod="ListSize" UseRandomSize="true" BlobMinSize="4"/>
+            <DataType DataTypeName="list">
+              <ElementType DataTypeName="tuple">
+                <Schema>
+                  <Fields Name="Codes" DataTypeName="string" Description="">
+                    <Distribution GenerationMethod="Constant" ConstantValue="null" UseRandomSize="true" BlobMinSize="4"/>
+                    <DataSourceMapping/>
+                  </Fields>
+                </Schema>
+                <Distribution GenerationMethod="Random"/>
+              </ElementType>
+              <Distribution GenerationMethod="ListSize"/>
+            </DataType>
+          </Fields>
+        </Schema>
+      </Fields>
+    </Schema>
+  </SimStreams>
+  <SimStreams Name="OptionsTrainTest">
+    <ProcessingOptions DataGenerationMethod="Custom"/>
+    <Schema>
+      <Fields Name="OptionsTrainTest" DataTypeName="tuple" Description="">
+        <Distribution/>
+        <Schema>
+          <Fields Name="CodeSelect" DataTypeName="list" Description="">
+            <Distribution GenerationMethod="ListSize" UseRandomSize="true" BlobMinSize="4"/>
+            <DataType DataTypeName="list">
+              <ElementType DataTypeName="tuple">
+                <Schema>
+                  <Fields Name="FieldSelect" DataTypeName="string" Description="">
+                    <Distribution GenerationMethod="Constant" ConstantValue="null" UseRandomSize="true" BlobMinSize="4"/>
+                    <DataSourceMapping/>
+                  </Fields>
+                  <Fields Name="Codes" DataTypeName="string" Description="">
+                    <Distribution GenerationMethod="Constant" ConstantValue="null" UseRandomSize="true" BlobMinSize="4"/>
+                    <DataSourceMapping/>
+                  </Fields>
+                </Schema>
+                <Distribution GenerationMethod="Random"/>
+              </ElementType>
+              <Distribution GenerationMethod="ListSize"/>
+            </DataType>
+          </Fields>
+          <Fields Name="FieldSelect" DataTypeName="tuple" Description="">
+            <Distribution/>
+            <Schema>
+              <Fields Name="Response" DataTypeName="string" Description="the left-hand side of formula, i.e. dependent variable.">
+                <Distribution GenerationMethod="Constant" ConstantValue="null" UseRandomSize="true" BlobMinSize="4"/>
+              </Fields>
+              <Fields Name="Predictors" DataTypeName="string" Description="the right-hand side of formula, i.e. independent/predictor variables.">
+                <Distribution GenerationMethod="Constant" ConstantValue="null" UseRandomSize="true" BlobMinSize="4"/>
+              </Fields>
+            </Schema>
+          </Fields>
+          <Fields Name="Lambda" DataTypeName="double" Description="">
+            <Distribution GenerationMethod="Constant" ConstantValue="null" NumRandomEnumValues="1">
+              <ConditionalCases>
+                <Cases>
+                  <Distribution GenerationMethod="Constant"/>
+                </Cases>
+              </ConditionalCases>
+            </Distribution>
+          </Fields>
+          <Fields Name="Tolerance" DataTypeName="double" Description="">
+            <Distribution GenerationMethod="Constant" ConstantValue="null"/>
+          </Fields>
+          <Fields Name="MaxIterations" DataTypeName="int" Description="">
+            <Distribution GenerationMethod="Constant" ConstantValue="null"/>
+          </Fields>
+        </Schema>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

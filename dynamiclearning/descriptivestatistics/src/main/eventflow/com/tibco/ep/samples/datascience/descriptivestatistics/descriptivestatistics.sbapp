@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_0cbb745d24fee91a01a4175837451bd7e4edd5b4">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.descriptivestatistics.descriptivestatistics"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="X1" type="double"/>
+                <field name="X2" type="double"/>
+                <field name="X3" type="double"/>
+                <field name="X4" type="double"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;X1&quot;,&quot;expression&quot;:&quot;X1&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;X2&quot;,&quot;expression&quot;:&quot;X2&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;X3&quot;,&quot;expression&quot;:&quot;X3&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;X4&quot;,&quot;expression&quot;:&quot;X4&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:50,&quot;maxNumberOfRows&quot;:50,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="DescriptiveStatistics" type="java">
+            <input port="1" stream="out:Matrix_1"/>
+            <output port="1" stream="OutputStream"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.descriptivestatistics.DescriptiveStatistics"/>
+            <param name="LowerQuartile" value="true"/>
+            <param name="Maximum" value="true"/>
+            <param name="Mean" value="true"/>
+            <param name="Median" value="true"/>
+            <param name="MedianAbsoluteDeviation" value="true"/>
+            <param name="Minimum" value="true"/>
+            <param name="MissingData" value="Pairwise"/>
+            <param name="N" value="true"/>
+            <param name="StandardDeviation" value="true"/>
+            <param name="Sum" value="true"/>
+            <param name="UpperQuartile" value="true"/>
+            <param name="VariableList" value="X1, X2, X3,X4"/>
+            <param name="Variance" value="true"/>
+            <param name="logLevel" value="INFO"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

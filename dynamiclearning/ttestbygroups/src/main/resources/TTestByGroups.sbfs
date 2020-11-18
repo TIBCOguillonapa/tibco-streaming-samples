@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="InputStream">
+    <ProcessingOptions DataGenerationMethod="DataFile" TimeSynchronized="true">
+      <DataSource Name="DataSource" DataSourceURI="TwoSampleByGroups.csv" QuoteChar="34"/>
+    </ProcessingOptions>
+    <Schema ColumnMappingMethod="NAME">
+      <Fields Name="x" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldName="x"/>
+      </Fields>
+      <Fields Name="group" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldName="group"/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_0cbb745d24fee91a01a4175837451bd7e4edd5b4">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.mlpregression.mlpregression"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="CrimeRate" type="double"/>
+                <field name="ResidentialLandZone" type="double"/>
+                <field name="NonRetailBusinessacres" type="double"/>
+                <field name="CharlesRiver" type="double"/>
+                <field name="NitricOxide" type="double"/>
+                <field name="AverageRooms" type="double"/>
+                <field name="OwnerOccupiedUnits" type="double"/>
+                <field name="DistancetoEmploymentCenters" type="double"/>
+                <field name="AccessibilitytoHighways" type="double"/>
+                <field name="PropertyTaxRate" type="double"/>
+                <field name="PupilTeacherRatio" type="double"/>
+                <field name="PercentOfLowerStatus" type="double"/>
+                <field name="ValueofOccupiedHomes" type="double"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;CrimeRate&quot;,&quot;expression&quot;:&quot;CrimeRate&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;ResidentialLandZone&quot;,&quot;expression&quot;:&quot;ResidentialLandZone&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;NonRetailBusinessacres&quot;,&quot;expression&quot;:&quot;NonRetailBusinessacres&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;CharlesRiver&quot;,&quot;expression&quot;:&quot;CharlesRiver&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;NitricOxide&quot;,&quot;expression&quot;:&quot;NitricOxide&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;AverageRooms&quot;,&quot;expression&quot;:&quot;AverageRooms&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;OwnerOccupiedUnits&quot;,&quot;expression&quot;:&quot;OwnerOccupiedUnits&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;DistancetoEmploymentCenters&quot;,&quot;expression&quot;:&quot;DistancetoEmploymentCenters&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;AccessibilitytoHighways&quot;,&quot;expression&quot;:&quot;AccessibilitytoHighways&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PropertyTaxRate&quot;,&quot;expression&quot;:&quot;PropertyTaxRate&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PupilTeacherRatio&quot;,&quot;expression&quot;:&quot;PupilTeacherRatio&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;PercentOfLowerStatus&quot;,&quot;expression&quot;:&quot;PercentOfLowerStatus&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;ValueofOccupiedHomes&quot;,&quot;expression&quot;:&quot;ValueofOccupiedHomes&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:300,&quot;maxNumberOfRows&quot;:300,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="Score" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Score_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="Data">list(tuple(CrimeRate, ResidentialLandZone,&#13;
+						NonRetailBusinessacres, CharlesRiver, NitricOxide, AverageRooms,&#13;
+						OwnerOccupiedUnits, DistancetoEmploymentCenters,&#13;
+						AccessibilitytoHighways, PropertyTaxRate, PupilTeacherRatio,&#13;
+						PercentOfLowerStatus,ValueofOccupiedHomes))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MLP" type="java">
+            <input port="1" stream="out:Score_1"/>
+            <input port="2" stream="out:Matrix_1"/>
+            <output port="1" stream="ModelSummary"/>
+            <output port="2" stream="TrainTestPredictions"/>
+            <output port="3" stream="ScoringPredictions"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.regression.mlp.MLP"/>
+            <param name="KTestRows" value="0"/>
+            <param name="UnmatchedCategories" value="Stop scoring and display error"/>
+            <param name="batchMode" value="false"/>
+            <param name="factorCodingMethod" value="One-hot"/>
+            <param name="fitPredictors" value="CrimeRate, ResidentialLandZone, NonRetailBusinessacres, CharlesRiver, NitricOxide, AverageRooms, OwnerOccupiedUnits, DistancetoEmploymentCenters, AccessibilitytoHighways, PropertyTaxRate, PupilTeacherRatio, PercentOfLowerStatus"/>
+            <param name="fitResponse" value="ValueofOccupiedHomes"/>
+            <param name="hiddenActivationFunction" value="SIGMOID"/>
+            <param name="learningRate" value="0.1"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="momentum" value="0.0"/>
+            <param name="nEpochs" value="200"/>
+            <param name="numberOfHiddenNeurons" value="10"/>
+            <param name="updateMLP" value="false"/>
+            <param name="weightDecay" value="0.0"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="ModelSummary"/>
+        <output-stream name="ScoringPredictions"/>
+        <output-stream name="TrainTestPredictions"/>
+    </add>
+</modify>

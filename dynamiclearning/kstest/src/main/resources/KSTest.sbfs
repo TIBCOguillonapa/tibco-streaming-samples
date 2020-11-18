@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="InputStream">
+    <ProcessingOptions DataGenerationMethod="Custom"/>
+    <Schema>
+      <Fields Name="X" DataTypeName="double" Description="">
+        <Distribution GenerationMethod="Uniform" MinValue="1.0" MaxValue="100.0" StartValue="1.0"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="Y" DataTypeName="string" Description="">
+        <Distribution GenerationMethod="Enumerated" UseRandomSize="true" NumRandomEnumValues="1" EnumeratedDistMethod="SpecifiedValues" BlobMinSize="4">
+          <EnumeratedDist weight="1.0" value="A"/>
+          <EnumeratedDist weight="1.0" value="B"/>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

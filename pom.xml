@@ -49,6 +49,7 @@
         <module>highavailability</module>
         <module>docker</module>
         <module>web</module>
+        <module>dynamiclearning</module>
     </modules>
 
 </project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.0-SNAPSHOT_a4d321682a83d591db2062fcef7e240902f5f70b">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.tibco.ep.samples.datascience.logisticregression.logisticregression"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="WEIGHT" type="double"/>
+                <field name="CATWIDTH" type="double"/>
+                <field name="Y" type="int"/>
+            </schema>
+        </stream>
+        <box name="Matrix" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Matrix_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.dataprep.matrix.MatrixOperator"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="matrixProperties" value="{&quot;missingData&quot;:[],&quot;rows&quot;:[{&quot;fieldName&quot;:&quot;WEIGHT&quot;,&quot;expression&quot;:&quot;WEIGHT&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;CATWIDTH&quot;,&quot;expression&quot;:&quot;CATWIDTH&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false},{&quot;fieldName&quot;:&quot;Y&quot;,&quot;expression&quot;:&quot;Y&quot;,&quot;expressionHolder&quot;:null,&quot;defaultExpression&quot;:&quot;&quot;,&quot;defaultExpressionHolder&quot;:null,&quot;selected&quot;:false}],&quot;sortField&quot;:&quot;&quot;,&quot;outputType&quot;:&quot;ROW_ADDED&quot;,&quot;minNumberOfRows&quot;:170,&quot;maxNumberOfRows&quot;:170,&quot;timeUnit&quot;:&quot;SECONDS&quot;,&quot;interval&quot;:1,&quot;clearMatrixOnEmit&quot;:false,&quot;selectedRowNames&quot;:[]}"/>
+        </box>
+        <box name="Score" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Score_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="Data">list(tuple(WEIGHT,CATWIDTH,Y))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LogisticRegression" type="java">
+            <input port="1" stream="out:Score_1"/>
+            <input port="2" stream="out:Matrix_1"/>
+            <output port="1" stream="ModelSummary"/>
+            <output port="2" stream="TrainTestPredictions"/>
+            <output port="3" stream="ScoringPredictions"/>
+            <error stream="Error"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.datascience.classification.logisticregression.LogisticRegression"/>
+            <param name="KTestRows" value="20"/>
+            <param name="UnmatchedCategories" value="Stop scoring and display error"/>
+            <param name="factorCodingMethod" value="One-hot"/>
+            <param name="fitPredictors" value="WEIGHT,CATWIDTH"/>
+            <param name="fitResponse" value="Y"/>
+            <param name="lambda" value="0.1"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="maxIterations" value="500"/>
+            <param name="tolerance" value="1.0E-5"/>
+        </box>
+        <output-stream name="Error"/>
+        <output-stream name="ModelSummary"/>
+        <output-stream name="ScoringPredictions"/>
+        <output-stream name="TrainTestPredictions"/>
+    </add>
+</modify>
